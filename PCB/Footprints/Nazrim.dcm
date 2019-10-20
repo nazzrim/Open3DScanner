@@ -1,0 +1,22 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP A4988
+D Pololu Breakout Board, Stepper Driver A4988
+K Pololu Breakout Board Stepper Driver A4988
+F https://www.pololu.com/product/2980/pictures
+$ENDCMP
+#
+$CMP AZDelivery-ESP32_NodeMCU
+K ESP32
+F https://cdn.shopify.com/s/files/1/1509/1638/files/ESP_-_32_NodeMCU_Developmentboard_Datenblatt_a3bf98d8-6a53-4d26-8f1c-c61b1c82af39.pdf?76837
+$ENDCMP
+#
+$CMP LT1086CT-5
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1086ffs.pdf
+$ENDCMP
+#
+$CMP Nokia5110-Display
+F http://www.sparkfun.com/datasheets/LCD/Monochrome/Nokia5110.pdf
+$ENDCMP
+#
+#End Doc Library

@@ -1,0 +1,140 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP AZDelivery-ESP32_NodeMCU
+K ESP32
+F https://cdn.shopify.com/s/files/1/1509/1638/files/ESP_-_32_NodeMCU_Developmentboard_Datenblatt_a3bf98d8-6a53-4d26-8f1c-c61b1c82af39.pdf?76837
+$ENDCMP
+#
+$CMP LM1084-5.0
+D 5A 27V Linear Regulator, Fixed Output 5.0V, TO-220/TO-263
+K Voltage Regulator 5A Positive
+F http://www.ti.com/lit/ds/symlink/lm1084.pdf
+$ENDCMP
+#
+$CMP LM1085-12
+D 3A 18V Linear Regulator, Fixed Output 12.0V, TO-220/TO-263
+K Voltage Regulator 5A Positive
+F http://www.ti.com/lit/ds/symlink/lm1085.pdf
+$ENDCMP
+#
+$CMP LM1085-3.3
+D 3A 27V Linear Regulator, Fixed Output 3.3V, TO-220/TO-263
+K Voltage Regulator Fixed 5A Positive
+F http://www.ti.com/lit/ds/symlink/lm1085.pdf
+$ENDCMP
+#
+$CMP LM1085-5.0
+D 3A 25V Linear Regulator, Fixed Output 5.0V, TO-220/TO-263
+K Voltage Regulator 5A Positive
+F http://www.ti.com/lit/ds/symlink/lm1085.pdf
+$ENDCMP
+#
+$CMP LT1083-12
+D 7.5A 25V LDO Linear Regulator, Fixed Output 12V, TO-220/TO-263
+K Voltage Regulator Fixed 7.5A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1083ffe.pdf
+$ENDCMP
+#
+$CMP LT1083-3.3
+D 7.5A 20V LDO Linear Regulator, Fixed Output 3.3V, TO-220/TO-263
+K Voltage Regulator Fixed 7.5A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1083ffe.pdf
+$ENDCMP
+#
+$CMP LT1083-3.6
+D 7.5A 20V LDO Linear Regulator, Fixed Output 3.6V, TO-220/TO-263
+K Voltage Regulator Fixed 7.5A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1083ffe.pdf
+$ENDCMP
+#
+$CMP LT1083-5.0
+D 7.5A 20V LDO Linear Regulator, Fixed Output 5.V, TO-220/TO-263
+K Voltage Regulator Fixed 7.5A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1083ffe.pdf
+$ENDCMP
+#
+$CMP LT1084-12
+D 5.0A 25V LDO Linear Regulator, Fixed Output 12V, TO-220/TO-263
+K Voltage Regulator Fixed 5.0A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1083ffe.pdf
+$ENDCMP
+#
+$CMP LT1084-3.3
+D 5.0A 20V LDO Linear Regulator, Fixed Output 3.3V, TO-220/TO-263
+K Voltage Regulator Fixed 5.0A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1083ffe.pdf
+$ENDCMP
+#
+$CMP LT1084-3.6
+D 5.0A 20V LDO Linear Regulator, Fixed Output 3.6V, TO-220/TO-263
+K Voltage Regulator Fixed 5.0A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1083ffe.pdf
+$ENDCMP
+#
+$CMP LT1084-5.0
+D 5.0A 20V LDO Linear Regulator, Fixed Output 5.V, TO-220/TO-263
+K Voltage Regulator Fixed 5.0A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1083ffe.pdf
+$ENDCMP
+#
+$CMP LT1085-12
+D 3.0A 25V LDO Linear Regulator, Fixed Output 12V, TO-220/TO-263
+K Voltage Regulator Fixed 3.0A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1083ffe.pdf
+$ENDCMP
+#
+$CMP LT1085-3.3
+D 3.0A 20V LDO Linear Regulator, Fixed Output 3.3V, TO-220/TO-263
+K Voltage Regulator Fixed 3.0A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1083ffe.pdf
+$ENDCMP
+#
+$CMP LT1085-3.6
+D 3.0A 20V LDO Linear Regulator, Fixed Output 3.6V, TO-220/TO-263
+K Voltage Regulator Fixed 3.0A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1083ffe.pdf
+$ENDCMP
+#
+$CMP LT1085-5.0
+D 3.0A 20V LDO Linear Regulator, Fixed Output 5.V, TO-220/TO-263
+K Voltage Regulator Fixed 3.0A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1083ffe.pdf
+$ENDCMP
+#
+$CMP LT1086-12
+D 1.5A 25V LDO Linear Regulator, Fixed Output 12V, TO-220/TO-263
+K Voltage Regulator Fixed 1.5A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1086ffs.pdf
+$ENDCMP
+#
+$CMP LT1086-2.85
+D 1.5A 18V LDO Linear Regulator, Fixed Output 2.85V, TO-220/TO-263
+K Voltage Regulator Fixed 1.5A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1086ffs.pdf
+$ENDCMP
+#
+$CMP LT1086-3.3
+D 1.5A 20V LDO Linear Regulator, Fixed Output 3.3V, TO-220/TO-263
+K Voltage Regulator Fixed 1.5A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1086ffs.pdf
+$ENDCMP
+#
+$CMP LT1086-3.6
+D 1.5A 20V LDO Linear Regulator, Fixed Output 3.6V, TO-220/TO-263
+K Voltage Regulator Fixed 1.5A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1086ffs.pdf
+$ENDCMP
+#
+$CMP LT1086-5.0
+D 1.5A 20V LDO Linear Regulator, Fixed Output 5.V, TO-220/TO-263
+K Voltage Regulator Fixed 1.5A Positive LDO
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1086ffs.pdf
+$ENDCMP
+#
+$CMP LT1086CT-5.0
+D 5A 27V Linear Regulator, Fixed Output 3.3V, TO-220/TO-263
+K Voltage Regulator Fixed 5A Positive
+F https://www.analog.com/media/en/technical-documentation/data-sheets/1086ffs.pdf
+$ENDCMP
+#
+#End Doc Library
