@@ -1,0 +1,17 @@
+﻿Manual/*.aux
+Manual/*.idx
+Manual/*.log
+Manual/*.out
+Manual/*.ilg
+Manual/*.ind
+Manual/*.ptc
+Manual/*.toc
+Manual/*.gz
+PCB/fp-info-cache
+PCB/fp-lib-table
+PCB/sym-lib-table
+PCB/*.kicad_pcb-bak
+PCB/*.bak
+PCB/Gerber Files/Gerber Files.zip
+PCB/3D Scanner-cache.lib
+PCB/3D Scanner.step
