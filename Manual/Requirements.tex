@@ -1,0 +1,156 @@
+\chapter{Required Parts}%
+\label{c:bom}%
+This chapter shows which things are needed to build the Open3DScanner. It looks at the components of the printer as well as the tools and devices needed to assemble it.%
+
+It is recommended to read this chapter carefully if you want to build your own Open3DScanner.%
+
+\section{Bill of Materials}%
+One of the most important points to build your own Open3DScanner is a bill of materials of the required parts.%
+
+This is contained in the following sections. The complete list is divided into two partial lists. The first one contains all electrical components which can be found on the PCB or are connected to it. The second list contains all further things that are needed to assemble the Open3DScanner.%
+
+\subsection{Electrical Components}%
+The following table contains all electrical components required to build the Open3DScanner.%
+
+In addition to the component and the required quantity, the identifier of the respective component on the circuit board is also specified. In addition to this, information is given for individual components, which must be considered when purchasing.%
+
+\begin{table}[ht!]%
+	\begin{centered}%
+		\rowcolors{2}{tableLineTwo}{tableLineOne}% specify rowcolors in tabularx style
+		\begin{tabularx} {\linewidth} {>{\rowmac \hsize=1.4\hsize}X>{\rowmac \hsize=0.3\hsize}X>{\rowmac \hsize=0.6\hsize}X>{\rowmac \hsize=1.7\hsize}X<{\clearrow}}%
+			\tabularxHeader%
+			Component & Quantity & PCB-Identifier  & Note\\%
+			\hrefIdx{https://www.espressif.com/en/products/hardware/esp32-devkitc/overview}{ESP32-DevKitC} & 1 & A1 & While I use the \hrefIdx{https://www.az-delivery.de/products/esp32-developmentboard}{AZ-Delivery ESP32-DevKitC}, any version that meets the \hrefIdx{https://www.espressif.com/en/products/hardware/esp32-devkitc/overview}{ESP32-DevKitC} specification should work.\\%
+			\hrefIdx{https://www.pololu.com/product/1182}{A4988 Stepper Driver} & 2 & A2TT1 \& A3RT1 & Any A4988 steper driver should work. I recommend getting matching heat sinks.\\%
+			\hrefIdx{https://reprap.org/wiki/NEMA\_17\_Stepper\_motor}{Nema 17 Stepper Motor} & 2 & M1RT1 \& M2TT1 & Make sure to buy the version with D-shaft. I use strong stepper motors, like this \hrefIdx{https://www.omc-stepperonline.com/nema-17-stepper-motor/nema-17-bipolar-59ncm-84oz-in-2a-42x48mm-4-wires-w-1m-cable-and-connector-full-d-cut-shaft.html}{\SI{59}{\newton\centi\meter} Nema 17 stepper motor}.\\%
+			\hrefIdx{https://www.analog.com/en/products/lt1086.html}{LT1086CT-5} & 1 & U2 & Ensure to get the \hrefIdx{https://www.centralsemi.com/PDFS/CASE/TO\_220\_PD.PDF}{TO-220} type.\\%
+			\hrefIdx{https://www.infineon.com/cms/en/product/power/mosfet/12v-300v-n-channel-power-mosfet/irlb8721/}{IRLB 8721} & 1 & Q1 & Ensure to get the \hrefIdx{https://www.centralsemi.com/PDFS/CASE/TO\_220\_PD.PDF}{TO-220} type.\\%
+			TO-220 Heatsink & 2 & Q1 \& U2 & I highly recommend at least one for the \hrefIdx{https://www.analog.com/en/products/lt1086.html}{LT1086CT-5} since it gets very hot during operation. The one for the \hrefIdx{https://www.infineon.com/cms/en/product/power/mosfet/12v-300v-n-channel-power-mosfet/irlb8721/}{IRLB 8721} is just to be safe. While I am using the \hrefIdx{https://www.fischerelektronik.de/web\_fischer/en\_GB/heatsinks/C02/Attachable\%20heatsink/PG/FK245MI247O/search.xhtml}{FK 245 MI 247 O} you can choose whatever fits in the space (about \SI{22.5}{\milli\meter}$\times$\SI{10}{\milli\meter}).\\%
+			\SI{1}{\milli\litre} Thermal Paste & 1 & - & Required for a good connection between \hrefIdx{https://www.centralsemi.com/PDFS/CASE/TO\_220\_PD.PDF}{TO-220} components and their heatsink. Only a tiny amount is required.\\%
+			\hrefIdx{https://www.alps.com/prod/info/E/HTML/Encoder/Incremental/EC12E/EC12E\_list.html}{STEC12E08 Rotary Encoder} & 1 & - & This will be connected to the pin header SW1.\\%
+			\hrefIdx{https://www.sparkfun.com/products/10168}{Nokia 5110 Display} & 1 & - & This will be connected to the pin header DS1. Buy one with screw holes. Hole distance on x-axis should be \SI{34}{\milli\meter} and \SI{40.5}{\milli\meter} on the y-axis.\\%
+			\SI{5}{\milli\meter} 3-Pin Bi-Color LED & 1 & - & This will be connected to the pin header D1. I recommend using a red-green one.\\%
+			\SI{5}{\meter}$\times$\SI{8}{\milli\meter} 300 LED 3528 Strip, \SI{12}{\volt} \SI{1.5}{\ampere} & 1 & - & This will be connected to the pin headers D2, D3, D4, D5.\\%
+			Round \SI{20}{\milli\meter} SPST Rocker Switch (R13 112) & 1 & - & This will be connected to the pin header SW2.\\%
+			\SI{5.5}{\milli\meter}$\times$\SI{2.1}{\milli\meter} Female DC Power Jack Panel Mount (L722AS) & 1 & - & This will be connected to the pin header SW2. Make sure to grab one with threads and a nut for panel mounting.\\%
+			\SI{473}{\nano\farad} Ceramic Capacitor & 1 & C3 & Choose \SI{2.54}{\milli\meter} pin distance and \SI{3.4}{\milli\meter} radius.\\%
+			\SI{10}{\micro\farad} Electrolytic Capacitor & 1 & C1 & Choose \SI{2}{\milli\meter} pin distance and \SI{4}{\milli\meter} radius.\\%
+			\SI{100}{\micro\farad} Electrolytic Capacitor & 3 & C2, C4, C5 & Choose \SI{2.5}{\milli\meter} pin distance and \SI{6.3}{\milli\meter} radius.\\%
+			\SI{100}{\ohm} Resistor & 3 & R1, R2, R6 & Choose whatever you have at hand, like carbon film or metal (oxide) film.\\%
+			\SI{330}{\ohm} Resistor & 1 & R4 & Choose whatever you have at hand, like carbon film or metal (oxide) film.\\%
+			\SI{10}{\kilo\ohm} Resistor & 2 & R3, R5 & Choose whatever you have at hand, like carbon film or metal (oxide) film.\\%
+		\end{tabularx}%
+		\caption{BOM for all electrical components of the Open3DScanner --- Part 1/3}%
+	\end{centered}%
+\end{table}%
+\begin{table}[ht!]%
+	\begin{centered}%
+		\rowcolors{2}{tableLineTwo}{tableLineOne}% specify rowcolors in tabularx style
+		\begin{tabularx} {\linewidth} {>{\rowmac \hsize=1.4\hsize}X>{\rowmac \hsize=0.3\hsize}X>{\rowmac \hsize=0.6\hsize}X>{\rowmac \hsize=1.7\hsize}X<{\clearrow}}%
+			\tabularxHeader%
+			Component & Quantity & PCB-Identifier  & Note\\%
+			\hrefIdx{https://www.sparkfun.com/products/8432}{2-Pin Screw Terminals 5mm Pitch} & 7 & J1, J2, SW2, D2, D3, D4, D5 & Take care to get the ones with 5mm pitch.\\%
+			\SI{2.54}{\milli\meter} 40-Pin Header & 1 & M1RT1, M2TT2, D1, DS1, SW1 & Will be cut into 1$\times$3, 2$\times$4, 1$\times$5, and 1$\times$8.\\%
+			\SI{2.54}{\milli\meter} 40-Pin Socket & 2 & A1, A2TT1, A3RT1 & Will be cut into 2$\times$19 and 4$\times$8. Each cut results in one socket loss.\\%
+			1$\times$3 Dupont Housing & 4 & - & Will be used to connect D1 with the bi-color LED on both sides as well as the STEC12E08 rotary encoder on component side.\\%
+			1$\times$5 Dupont Housing & 1 & - & Will be used to connect SW1 with the rotary encoder on PCB side.\\%
+			1$\times$8 Dupont Housing & 2 & - & Will be used to connect DS1 with the LCD on both sides.\\%
+			Female Dupont Terminals & 33 & - & Required for all Dupont housings.\\%
+			Molex crimp housing --- Micro-Fit - 1x2-pin, male (430200201) & 4 & - & Required for connecting the lights to the Open3DScanner. Part number \hrefIdx{https://www.molex.com/molex/products/datasheet.jsp?part=active/0430200201\_CRIMP\_HOUSINGS.xml}{Molex 430200201}\\%
+			Molex crimp housing --- Micro-Fit - 1x2-pin, female & 4 & - & Required for connecting the lights to the Open3DScanner. Part number \hrefIdx{https://www.molex.com/molex/products/datasheet.jsp?part=active/0430250200\_CRIMP\_HOUSINGS.xml}{Molex 430250200}\\%
+			Molex crimp contact --- Micro-Fit, female  & 8 & - & Required for connecting the lights to the Open3DScanner. Part number \hrefIdx{https://www.molex.com/molex/products/datasheet.jsp?part=active/0430300007\_CRIMP\_TERMINALS.xml}{Molex 430300007}\\%
+			Molex crimp contact --- Micro-Fit, male  & 8 & - & Required for connecting the lights to the Open3DScanner. Part number \hrefIdx{https://www.molex.com/molex/products/datasheet.jsp?part=active/0430310007\_CRIMP\_TERMINALS.xml}{Molex 430310007}\\%
+			Cable Lug & 4 & - & The cable lugs have to match your power jack and your rocker switch. For me it is 2$\times$\SI{2.8}{\milli\meter} (power jack) and 2$\times$\SI{4.8}{\milli\meter} (rocker switch).\\%
+			Power Supply \SI{12}{\volt}, \SI{2250}{\milli\ampere} with \SI{5.5}{\milli\meter}$\times$\SI{2.1}{\milli\meter} male Barrel Jack & 1 & - & This will power the whole Open3DScanner\\%
+			\SI{15}{\centi\meter} Micro USB-B cable & 1 & - & Used to connect J2 with the ESP32's usb port. Get an already prepared cable if you can, otherwise you need to cut one yourself.\\%
+			AWG 18 or \SI{0.75}{\milli\meter\squared} cable & - & - & Used for transmitting power (e.g. from power jack to PCB, within pieces of the LED strip, and towards the LED strip). Since the cables are not exposed to any or only little movement, no special requirements like silicone cables exist. I use simple speaker cable which is sold in rolls of \SI{25}{\meter}. I cannot provide an accurate required quantity for the wires since it depends somewhat on individual wiring.\\%
+		\end{tabularx}%
+		\caption{BOM for all electrical components of the Open3DScanner --- Part 2/3}%
+	\end{centered}%
+\end{table}%
+\begin{table}[ht!]%
+	\begin{centered}%
+		\rowcolors{2}{tableLineTwo}{tableLineOne}% specify rowcolors in tabularx style
+		\begin{tabularx} {\linewidth} {>{\rowmac \hsize=1.4\hsize}X>{\rowmac \hsize=0.3\hsize}X>{\rowmac \hsize=0.6\hsize}X>{\rowmac \hsize=1.7\hsize}X<{\clearrow}}%
+			\tabularxHeader%
+			Component & Quantity & PCB-Identifier  & Note\\%
+			AWG 24 or \SI{0.2}{\milli\meter\squared} cable & - & - & Used to connect the various components to the PCB. I cannot provide an accurate required quantity for the wires since it depends somewhat on individual wiring.\\%
+			PCB & 1 & - & The Gerber files for the PCB of the Open3DScanner are part of this project and can be used to get PCBs from a manufacturer.\\%
+		\end{tabularx}%
+		\caption{BOM for all electrical components of the Open3DScanner --- Part 3/3}%
+	\end{centered}%
+\end{table}%
+
+\subsection{Other Components}%
+The previous section contains the BOM for all electrical parts of the Open3DScanner.%
+
+In addition, this section contains a BOM for all remaining parts needed to build the Open3DScanner. The separation should help to better bundle the orders with the respective suppliers.%
+
+It should be noted that the quantities specified for the screws indicate maximum quantities. These can be smaller, e.g. if the maximum of four lights are not mounted.%
+
+\begin{table}[ht!]%
+	\begin{centered}%
+		\rowcolors{2}{tableLineTwo}{tableLineOne}% specify rowcolors in tabularx style
+		\begin{tabularx} {\linewidth} {>{\rowmac \hsize=1.2\hsize}X>{\rowmac \hsize=0.3\hsize}X>{\rowmac \hsize=1.5\hsize}X<{\clearrow}}%
+			\tabularxHeader%
+			Component & Quantity & Note\\%
+			\SI{400}{\milli\meter} $\times$ \SI{550}{\milli\meter} $\times$ \SI{16}{\milli\meter} Wooden Board & 1 & This will be used as the base of the whole Open3DScanner\\%
+			\SI{500}{\milli\meter} $\times$ \SI{550}{\milli\meter} $\times$ \SI{3}{\milli\meter} PVC Rigid Foam Sheet & 1 & The rear panel of the Open3DScanner.\\%
+			\SI{800}{\gram} Roll ABS Filament & 1 & Main color. Other materials like PLA may be fine.\\%
+			\SI{800}{\gram} Roll ABS Filament & 1 & Secondary color. Other materials like PLA may be fine.\\%
+			\SI{800}{\gram} Roll ABS Filament & 1 & Accent color. Other materials like PLA may be fine.\\%
+			Nema 17 Damper & 2 & For decoupling the motors from the Open3DScanner's structure.\\%
+			Liquid Glue & 1 & Required for assembling the lights if the M3 tape which is applied to the LED strip does not hold and to glue some nuts in place.\\%
+			\SI{5}{\milli\meter} $\times$ \SI{26}{\milli\meter} Steel Rod & 5 & Used to connect and secure various parts.\\%
+			625ZZ Bearing & 2 & Used to connect the moving parts to the frame with as little friction as possible.\\%
+		\end{tabularx}%
+		\caption{BOM for all non-electrical components of the Open3DScanner 1/2}%
+	\end{centered}%
+\end{table}%
+
+\begin{table}[ht!]%
+	\begin{centered}%
+		\rowcolors{2}{tableLineTwo}{tableLineOne}% specify rowcolors in tabularx style
+		\begin{tabularx} {\linewidth} {>{\rowmac \hsize=1.2\hsize}X>{\rowmac \hsize=0.3\hsize}X>{\rowmac \hsize=1.5\hsize}X<{\clearrow}}%
+			\tabularxHeader%
+			Component & Quantity & Note\\%
+			M3$\times$6 SHCS & 6 & Used to connect the stepper motors to the dampers as well as the LED to the housing.\\%
+			M3$\times$8 SHCS & 12 & Used for various connections.\\%
+			M3$\times$10 SHCS & 12 & Used for various connections.\\%
+			M3$\times$12 SHCS & 6 & Used for various connections.\\%
+			M3$\times$20 SHCS & 4 & Used for various connections.\\%
+			M3 Nut & 40 & Used for assembling the lights.\\%
+			4.0$\times$16 Countersunk Wood Screw & 56 & Used to connect the individual parts with the base.\\%
+			5/8'' Rubber Seal Ring & 1 & Used for the stepper driver cable entry in the housing.\\%
+			\SI{30}{\milli\meter} $\times$ \SI{15}{\milli\meter} Rubber Feet & 4 & Used as feet for the Open3DScanner.\\%
+		\end{tabularx}%
+		\caption{BOM for all non-electrical components of the Open3DScanner 2/2}%
+	\end{centered}%
+\end{table}%
+
+\section{Used Tools}%
+Various tools are required to set up the Open3DScanner. These are described in this section.%
+
+At first the standard tools are listed, which are needed, but are not described in this chapter. Screwdrivers are needed for the used screws and even if pliers and tweezers are not absolutely necessary, they prove to be useful in some parts of the assembly.%
+
+\subsection{3D Printer}%
+A 3D printer is needed to print all the models from which the Open3DScan-ner is built. The requirements are relatively low as all parts can be printed from PLA or ABS\marginInfo[Used Filaments]{I printed all parts for the Open3DScanner with ABS, so it's the only material I can say for sure that it works. However, it should be possible to use PLA and PETG, as well as other materials, as there are no special forces acting on the parts.}.%
+
+All parts have been designed to fit in the print volume of an \hrefIdx{https://www.prusa3d.com/original-prusa-i3-mk3/}{Original Prusa i3 MK3}, which has a print volume of \SI{250}{\milli\meter} $\times$ \SI{210}{\milli\meter} $\times$ \SI{210}{\milli\meter}. Any other FDM 3D printer can be used, which has at least this print volume. The only thing I am recommending is a heated printing bed, but nowadays it is included in almost all printers.%
+
+\subsection{Crimping Tools}%
+In order to achieve a decent and secure wiring of the Open3DScanner, it is necessary to crimp the cables.%
+
+Different crimping tools are used for the different connections. A ferrule crimper is used for the connections to the screw terminals, a universal crimping tool\marginTips[Universal Crimper]{While I mostly bought cheap sets for my crimping tools, I bought an \hrefIdx{http://www.engineer.jp/en/products/pa09e.html}{Engineer PA-09} for crimping Dupont cables, because I crimp such cables most often. Even if this crimping tool is a bit more expensive than comparable crimping pliers, the quality of the crimping tool pays off. For this reason I recommend the \hrefIdx{http://www.engineer.jp/en/products/pa09e.html}{Engineer PA-09}, especially if you frequently crimp Dupont cables.} is used for the dupont cables, which connect the individual components to the board, and a terminal crimp tool is used for the connections to individual components, which have plugs for cable lugs.%
+
+\subsection{Soldering Iron}%
+A soldering iron is required to assemble the board. Since the Open3DScan-ner does not use any particularly sensitive or otherwise special parts, almost any soldering iron can be used. It is not necessary to use a digital soldering station.%
+
+\section{Hardware for Photogrammetry}%
+A powerful computer shortens the necessary processing time for the photogrammetry process. As already mentioned in chapter~\ref{sec:photogrammetry}, a Nvidia GPU is required to use the Meshroom software. Other photogrammetry software may not require a Nvidia GPU.%
+
+Otherwise, photogrammetry software benefits greatly from more RAM, which is why \SI{32}{\giga\byte} is a reasonable lower limit, which is also mentioned by various manufacturers of software for photogrammetry.%
+
+A further important point that must be considered is that during the calculation large amounts of data are generated in the individual intermediate steps, which have to be persisted. The size of the generated data exceeds the size of the input images by a multiple. One of my example scans with 231 images generated over \SI{20}{\giga\byte}\marginInfo[Example Scan]{The mentioned scan consists of four individual scans, whose data were combined. At this point we do not want to go into further detail regarding this scan, corresponding information can be found in the chapters~\ref{c:userGuide} and~\ref{c:performingScans}.} of data.%
+
+For this reason it must be ensured that sufficiently large amounts of storage space are available.%

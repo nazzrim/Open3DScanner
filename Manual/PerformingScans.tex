@@ -1,0 +1,22 @@
+\chapter{Perform Scans}
+\label{c:performingScans}
+Even though I am not an expert in the field of photogrammetry, I have gathered some experiences which I would like to share here. The recommendations given in this chapter do not claim to be universally valid and are based on my individual experiences.%
+
+\section{Lighting \& Surface}%
+A uniform illumination of the object to be scanned improves the quality of the scans significantly. In addition, glossy and transparent objects are much harder to scan compared to matte objects. For this reason, such objects should be treated (if possible) so that they have a better surface for the scanner. This can be done, for example, by spraying the objects with chalk spray.%
+
+\section{Camera Settings}%
+Most smartphone cameras have several features that automatically improve image quality. These range from autofocus and automatic white balance to AI functions that adjust color schemes based on recognized image content. Even if these functions provide better snapshots in everyday life, they are detrimental to the goals of photogrammetry. These functions make it more difficult to combine the images, which results in poorer scans.%
+
+For this reason, the functions should be deactivated as far as possible and photos should be taken with fixed settings. This is especially true for color temperature, auto white balance, and autofocus.%
+
+\section{Augmented Reconstruction}%
+Since the object to be scanned must be attached to the turntable, an area of the object is always not visible on the captured images. This means that a single scan is not sufficient to scan an object completely. This may not be a problem for objects that have a flat base on which they stand and when no texture is required for that area.%
+
+For many other objects this is a problem and multiple scans must be performed with different orientations of the object to capture the object from all sides.%
+
+At least the software Meshroom has the function augmented reconstruction for this case. It allows to add another data set (an additional scan) to an existing data set (the first scan) and to calculate a new overall result. This can repeated as often as needed and results in a tree like structure of the Meshroom processing graph.%
+
+That way it is often possible to create complete scans of objects. It may be necessary to filter some remaining artifacts of e.g. the Turntable of the reconstructed 3D model, but except from that you get a full scan and 3D model of the scanned object.%
+
+This feature can also be used if the reconstructed model lacks details in some areas. Just perform an additional (detailed) scan of the respective area and start an augmented reconstruction.%

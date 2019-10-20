@@ -1,0 +1,222 @@
+% This is a derivation of the \printMarginPartialToc command of yReport.cls which does not work (the way I want it) with reports
+\DeclareDocumentCommand{\printMarginToc}{O{1} O{\partialTocTitle} o o}{%
+	\mdfapptodefinestyle{partialToc}{%
+		backgroundcolor=light-gray%
+	}%
+	\colorlet{partialTocColor}{mainColor}%
+	\marginElement{%
+		\IfValueT{#3}{\vspace*{#3}}%
+		\begin{mdframed}[style=partialToc]%
+			\alignLeftOrRightStandaloneInversed{\fontspec{Fira Sans Book}\Large #2}%
+			{\color{partialTocColor}\hfill\rule{\linewidth}{.5mm}}%
+			\vspace*{-2mm}%
+			\printcontents[content]{partial}{0}{\setcounter{tocdepth}{#1}\hypersetup{linkcolor=black}}%
+		\end{mdframed}%
+		\IfValueT{#4}{\vspace*{#4}}%
+	}%
+}%
+
+% use the toc style which is used by yReport for sections, for chapters too
+\titlecontents{chapter}[0mm]% chapter style
+{\contentsmargin[4mm]{0mm}\fontspec{Fira Sans Book}\alignLeftOrRightStandaloneInversed}%
+{\isOddPage%
+	{\makebox[3.5mm]{\color{partialTocColor}$\blacktriangleright$\hfill}}%
+	{(p. \thecontentspage)}%
+	\yTocSection}%
+{}{}[\vspace*{-1mm}]%
+
+\newcommand\setrow[1]{\gdef\rowmac{#1}#1\ignorespaces}% specify style of a tabularx row
+\newcommand\clearrow{\global\let\rowmac\relax}% clear tabularx row style to default
+\clearrow%
+\newcommand{\tabularxHeader}{% table header style for tabularx tables
+	\rowcolor{mainColor}%
+	\setrow{\bfseries\sffamily\leavevmode\color{white}}%
+}%
+\rowcolors{2}{tableLineTwo}{tableLineOne}% specify rowcolors in tabularx style
+\setlength{\extrarowheight}{1.5mm}% line separation between tabluarx rows
+
+\makeatletter%
+\DeclareDocumentCommand{\sideTabularx}{o m}{%
+	\marginElement{%
+		\strictpagechecktrue%
+		\checkoddpage%
+		\ifoddpage%
+		\justifying\footnotesize%
+		\else%
+		\RaggedLeft\footnotesize%
+		\fi%
+		\@afterindentfalse\@afterheading%
+		\vspace*{6mm} % compensate the table space added above the first line by the gape command
+		#2%
+		\captionsetup*[table]{font={footnotesize}}%
+		\IfValueT{#1}{\captionof{table}{#1}}%
+	}%
+}%
+\makeatother%
+
+% small modifications to yReports titleTwo command
+\makeatletter%
+\DeclareDocumentCommand{\titleThree}{o o}{%
+	\updateDarkMainColor%
+	\thispagestyle{empty}%
+	\symmetricalPage%
+	\null%
+	\tikzset{%
+		fitting node/.style={%
+			inner sep=0pt,%
+			fill=none,%
+			draw=none,%
+			reset transform,%
+			fit={(\pgf@pathminx,\pgf@pathminy) (\pgf@pathmaxx,\pgf@pathmaxy)}%
+		},%
+		reset transform/.code={\pgftransformreset}%
+	}%
+	\begin{tikzpicture}[remember picture, overlay]%
+		% some coordinates
+		\coordinate[yshift=-\titlepageHeaderHeight](rectangleEnd) at (current page.north east);%
+		\coordinate[xshift=-4cm](dateCenter) at (rectangleEnd);%
+		
+		% draw an image if one was provided
+		\IfValueT{#1}{\draw (current page.center)[yshift=-\titlepageHeaderHeight/2] node[align=center, inner sep=0mm, anchor=center] {\IfValueTF{#2}{\includegraphics[#2]{#1}}{\includegraphics[height=\paperheight-\titlepageHeaderHeight]{#1}}};}%
+		
+		% red rectangle
+		\fill[mainColor] (current page.north west) rectangle (rectangleEnd) node[fitting node] (headerRectangle) {};%
+		
+		% title page text (title rule and subtitle)
+		% title
+		\draw (\leftmargin-9mm, -3cm) node[align=left, inner sep=0mm, anchor=south west, font=\fontsize{1.4cm}{1.2cm}\selectfont\chapterFont] (title) {%
+			\hspace*{-.8mm}\begin{varwidth}{\textwidth}%
+			\FlushLeft%
+			\noHyphen\runtitle%
+			\end{varwidth}%
+		};%
+		% rule
+		\getwidthofnode{\titlepageTitleLength}{title}%
+		\node[inner xsep=0mm, text width=\titlepageTitleLength+2mm, anchor=north west, yshift=-2mm, xshift=-1mm] (rule) at (title.south west) {{\color{White}\rule{\linewidth}{.6mm}}};%
+		% author
+		\node[inner xsep=0mm, text width=\linewidth, anchor=north west, yshift=-2mm] (subtitle) at (rule.south west) {
+			{\fontsize{.6cm}{.72cm}\selectfont\color{White}%
+				\@subtitle}% \runauthor
+		};
+		
+		% Date
+		\hexagon[mainColor]{dateCenter}{\dateRadius}%
+		\hexagon[darkMainColor]{dateCenter}{\dateRadius}%
+		\draw(dateCenter) node[text width=1.3cm, align=center] (day) {%
+			\fontsize{1cm}{1.2cm}\selectfont\textbf{\twodigits{\the\day}}%
+		};%
+		\draw(dateCenter) node [node distance = .75cm, above of=day, text width=1.3cm, align=center](month) {\fontsize{.5cm}{1.2cm}\selectfont\textsc{\addfontfeatures{LetterSpace=10.0}\monthThreeLetterName}};%
+		\draw(dateCenter) node[node distance = .65cm, below of=day, text width=1.3cm, align=center] (year) {\fontsize{.4cm}{1.2cm}\selectfont{\addfontfeatures{LetterSpace=20.0}\the\year} };%
+		% author
+		\node[anchor=south east] at ($(current page.south east)+(-6mm, 6mm)$) {\fontspec{Canter Light}\fontsize{10mm}{6mm}\color{White}\selectfont\@author};%
+	\end{tikzpicture}%
+	\null%
+	\vfill%
+	\newpage%
+	\asymmetricalPage%
+}
+\makeatother%
+
+\titleformat{\chapter}[block]%
+{}% format
+{% label
+	{\darkMainColor}%
+	\backgroundThisPageColor%
+	\begin{tikzpicture}[remember picture, overlay]%
+	\tikzfading[name=monfading,left color=transparent!100,right color=transparent!0]%
+	\isOddPage{%
+		\coordinate[xshift=-\bigVerticalLineWidth/2, yshift=-5.8cm] (numberCenter) at (current page.north east);%
+	}{%
+		\coordinate[xshift=\bigVerticalLineWidth/2, yshift=-5.8cm] (numberCenter) at (current page.north west);%
+	}%
+	\hexagon[darkMainColor]{numberCenter}{\chapterNumberRadius}%
+	\node[yshift=2mm] at (numberCenter) (chapterNumber) {%
+		\chapterNumberFont%
+		\fontsize{\chapterNumberRadius}{\chapterNumberRadius}%
+		\selectfont%
+		\thechapter%
+	};%
+	\node [below=1mm of chapterNumber, text=Black!80] {%
+		\addfontfeatures{LetterSpace=20.0}%
+		\fontsize{1.2em}{1.4em}\selectfont%
+		\chaptertitlename%
+	};%
+	\end{tikzpicture}%
+}%
+{0pt}% sep
+{% code before
+	\isOddPage{%
+		\begin{FlushRight}%
+			\vspace*{-1.5mm}%
+	}{%
+		\begin{FlushLeft}%
+			\vspace*{-10mm}%
+	}%
+	\fontsize{1.8cm}{2.16cm}\chapterFont\selectfont%
+}[% code after
+	\alignLeftOrRightEnd%
+]%
+
+\hypersetup{%
+	urlcolor=secondColor,%
+	citecolor=secondColor,%
+	linkcolor=secondColor%
+}% Set link color to secondary color
+\sisetup{mode = text}% Numbers and units from siunitx shall be displayed in normal text font
+
+% Configure imakeidx package and href command to automatically build a href list
+\makeindex[name=hrefs, title={References}, columns=1]%
+\indexsetup{level=\chapter}%
+\DeclareDocumentCommand{\hrefIdx}{m m}{%
+	\href{#1}{#2}
+	\index[hrefs]{
+		\protect{%
+			#2:\newline\href{#1}{%
+				\texttt{%
+					\replace{\markletters{#1}}{_}{\_}% iterate over all characters and add an empty hskip to allow line breaks at every character and then replace _ (subscript) with \_ (_ character)
+				}%
+			}%
+		}%
+	}%
+}%
+
+% Little helper function to ensure number x  with 0 <= x< 100 is always displayed with two digits (add a leading 0 if required)
+\newcommand\twodigits[1]{%
+	\ifnum#1<10 0#1\else #1\fi%
+}%
+
+% makro to iterate a string char by char
+\def\xloop<#1#2>{%
+	\ifx\relax#1%
+	\else%
+	#1\hskip0mm\xloop<#2>%
+	\fi}%
+\def\markletters#1{\xloop<#1\relax>}%
+
+% Helper command for string replacements
+\ExplSyntaxOn%
+\NewDocumentCommand{\replace}{mmm}{%
+	\marian_replace:nnn {#1} {#2} {#3}%
+}%
+\tl_new:N \l_marian_input_text_tl%
+\cs_new_protected:Npn \marian_replace:nnn #1 #2 #3 {%
+	\tl_set:Nn \l_marian_input_text_tl { #1 }%
+	\tl_replace_all:Nnn \l_marian_input_text_tl { #2 } { #3 }%
+	\tl_use:N \l_marian_input_text_tl%
+}%
+\ExplSyntaxOff%
+
+% Format caption lables to use grey background on caption label and sideTitle format for caption itself
+\DeclareCaptionLabelFormat{yLabel}{%
+	{\raisebox{-1mm}{\normalsize\tikz{\node[anchor=west, inner sep=1mm, fill=lightGrey, font=\bfseries, text=mainColor] {#1 #2};}}\vspace{1mm}}{~}%
+}%
+\DeclareCaptionLabelFormat{yLabelFigure}{%
+	{\raisebox{-1.5mm}{\normalsize\tikz{\node[anchor=west, inner sep=1mm, fill=lightGrey, font=\bfseries, text=mainColor] {#1 #2};}}\vspace{1mm}}{~}%
+}%
+\DeclareCaptionStyle{yReportCaptionStyleFigure}{labelsep=none, labelformat=yLabelFigure, singlelinecheck=false}%
+\DeclareCaptionFormat{caption}{#1#2\lightBoldFont{#3}}%
+\captionsetup*[figure]{style=yReportCaptionStyleFigure, justification=RaggedRight, position=bottom, format=caption}%
+\captionsetup*[table]{style=yReportCaptionStyle, justification=RaggedRight, position=bottom, format=caption}%
+
+% Allow to set side captions with label
+\DeclareDocumentCommand{\sideCaptionOfL}{m m m}{\marginnote{\captionof{#1}{#2}\label{#3}}}

@@ -1,0 +1,82 @@
+\documentclass[a4paper]{yReport}%
+
+\usepackage{fontawesome5}% Required by yAuthorBlock
+\usepackage{yAuthorBlock}% Used to create the author block on page 2
+\usepackage{tabularx}% Since tabu (used by yReport) is not behaving the expected way, use tabularx
+\usepackage[binary-units=true]{siunitx}% Used to display numbers and units in a proper way
+\usepackage{indextools}% Used to build a href list for printed documents
+\usepackage{xparse}% Required for string magic to display urls in index a proper way
+\usepackage{infoBulle}% Necessary to display the info/warn/... blocks in the main area
+\usepackage{marginInfoBulle}% Necessary to display the info/warn/... blocks in the margin area
+\usepackage[cleanlook, english, TeX]{isodate}% Used for uniform displaying dates. Required because of strange behaviour of datetime package (included in yReport)
+\usepackage{xurl}% Override url command do allow linebreaks everywhere
+\usepackage{hologo}% Used to disaplay logos from the latex family
+
+\definecolor{mainColor}{RGB}{39, 174, 96}% Main color used for decorations --> nephretis
+\definecolor{secondColor}{RGB}{142, 68, 173}% Secondary color used for e.g. links --> wisteria
+
+\newcommand{\urlCheckedOne}{\origdate\printdateTeX{2019/10/20}\TeXdate}% Date variables
+\newcommand{\releaseOne}{\printdateTeX{2019/10/20}}%
+
+\input{Commands}% This file contains 'messy' configuration which would make this file less readable
+
+\author{Nazrim}%
+\subtitle{Manual --- Rev. 1.0}%
+\title{Open3DScanner}%
+
+\hypersetup{%
+	pdftitle={Open3DScanner},%
+	pdfsubject={Manual --- Rev. 1.0},%
+	pdfauthor={Nazrim},%
+	pdfkeywords={{3D Scanner}{Open Source}{Open Hardware}{Photogrammetry}{Arduino}{ESP32}},%
+}%
+
+\makeatletter%
+\let\runauthor\@author%
+\let\runtitle\@title%
+\makeatother%
+
+\begin{document}%
+	\startcontents[content]% Ensure function of Toc
+	\titleThree[images/cover]% Build title page
+	\chaptermark{License}% Create valid header on toc/license/author side
+	\printMarginToc[1][Table of contents]% Print toc in margin
+	
+	\sideTabularx[History of this document]{%
+		\begin{tabularx} {\marginparwidth} {>{\rowmac \hsize=.6\hsize}X>{\rowmac}X>{\rowmac \hsize=1.4\hsize}X<{\clearrow}}%
+			\tabularxHeader%
+			Version & Date & Note\\%
+			1.0 & \releaseOne & Initial release\\%
+		\end{tabularx}%
+	}%
+
+	\section*{License}%
+		This work is licensed under the Creative Commons At\-tri\-bu\-tion-Non\-Com\-mer\-cial-Share\-Alike 4.0 International License. To view a copy of this license, visit \url{https://creativecommons.org/licenses/by-nc-sa/4.0/}.%
+	
+	\vfill%
+	\authorBlock{%
+		\authorName{Nazrim}%
+		\authorWebsite{https://www.myminifactory.com/users/Nazrim}[\faCubes]%
+		\authorWebsite{https://www.thingiverse.com/Nazrim}[\faCubes]%
+		\authorWebsite{https://www.hackster.io/Nazrim}[\faCubes]%
+		\authorWebsite{https://github.com/nazzrim}[\faGithub]%
+	}%
+	\include{Introduction}%
+	\include{RelatedProjects}
+	\include{References}%
+	\include{Requirements}%
+	\include{BuildInstructions}%
+	\include{UserGuide}%
+	\include{PerformingScans}%
+	\appendix% start appendices
+	\include{AppendixPCB}
+	\indexprologue{%
+		\label{ca:refs}%
+		In case the document is available in printed form, this chapter contains all used links, which are provided with alternative display texts. This also allows these references to be followed.%
+		
+		The references are sorted alphabetically and not according to their appearance in the document.A few of the link texts are interpreted as special characters (e.g. \hologo{XeLaTeX}), so they do not appear at the expected position of the index, but at the beginning.%
+		
+		All links listed in this appendix were checked for validity on \urlCheckedOne.%
+	}%
+	\printindex[hrefs]%
+\end{document}%

@@ -1,0 +1,75 @@
+\chapter{User Guide}
+\label{c:userGuide}
+This chapter describes how to use the fully assembled Open3D scanner to create 3D scans. First, the menu navigation of the Open3DScanner is explained and then the handling of the hardware.%
+
+\section{Menu Navigation}%
+If the Open3DScanner is switched on, the user sees the main menu on the display. It contains three sub-items which lead to the menus described in the following sections. The navigation within the menu is done by the knob to the right of the display. If it is rotated, the cursor position changes or the currently selected value is changed. To confirm a selection, press the knob.%
+
+\subsection{Scan}%
+The user has two options for starting a scan: Using a preset or creating a custom scan.%
+
+The presets are predefined scan settings that allow a quick and easy start of the scan.%
+
+If a custom scan is selected, the user must successively specify a series of settings that define the characteristics of the subsequent scan. The selected values are persisted and selected as default values for the next custom scan. This is done under the assumption that similar scans are frequently performed.%
+
+First, the user must determine how many images are to be taken each time the turntable on which the object to be scanned is mounted is rotated. Any value between 1 and 3200 (inclusive) can be used. 3200 corresponds to the maximum resolution of the stepper motors at 200 steps per revolution and 1/16 microstepping.%
+
+The next step is to select how far the turntable and the object are to be rotated on the x-axis during the scan. Any value between 1 and 359 (incluseive) degrees can be selected\marginInfo[Reasonable Values]{Even if there is a large range of values for the user to choose from, it often makes little sense to rotate the object further than 180 degrees around the x-axis. I usually use values in the range of 45 and 135.}.%
+
+Finally, the number of steps in which the rotation on the x-axis is divided must be selected. Each step corresponds to a complete rotation of the turntable with the initially selected number of steps. The value range always starts at 1 and has a maximum value that corresponds to the maximum resolution of the stepper motor for the previously selected rotation around the x-axis.%
+
+After all these parameters have been selected, the user is presented with a summary containing all selected values, the resulting number of images and the duration of the scan. At this point the scan can either be confirmed or aborted. When a preset is selected, the summary is presented directly to the user.%
+
+Before the actual scan is started, it must be selected whether the lights of the Open3DScanner are to be switched on or off during the scan. The user is now prompted via the display to position the used smartphone appropriately and (if not already done) to establish a Bluetooth connection with the scanner. The scan cannot be started until the necessary Bluetooth connection has been established. As soon as this has been done, the Turntable can be moved to the desired start position and the scan can be started via the knob.%
+
+During scanning, the current progress is shown on the display. It shows the number of recorded images, their total number and the remaining time. If the Bluetooth connection to the smartphone is lost during the scan, the scan is interrupted and the user is prompted to re-establish the connection. If the knob is pressed during the scan, the scan can be aborted or resumed after confirmation.%
+
+\subsection{Settings}%
+The settings menu is divided into categories that group the individual settings.%
+
+\subsubsection{Scan}%
+In this setting menu, you can set how many milliseconds the scanner stops after a motor movement or after taking a photo. This is necessary to allow the camera to focus images, but also to prevent possible vibrations of the scanner from blurring the images.%
+
+\subsubsection{Display}%
+In addition to the option of switching the backlight for the display on or off, the contrast of the display can be adjusted here.%
+
+\subsubsection{Camera}%
+Here you can select which camera type will be used during the scan. This is important because the control of various devices is different. Currently iOs and Android devices are supported.%
+
+\subsubsection{Steppers}%
+This menu allows you to adjust the behavior of the stepper motors. The selected stepper motor moves 15° back and forth while the settings are adjusted. This makes changes directly visible.%
+
+The direction of movement of the motors can be changed if necessary. In addition, it can be determined with how many RPM the motor should move, what the acceleration and deceleration curve should look like, and which maximum values should be used for acceleration and deceleration.%
+
+\subsection{Debug}%
+The debug menu contains options to test some features of the Open3DScanner. Currently it is possible to switch the connected lights on and off and to trigger the camera. The system does not check whether a Bluetooth connection is actually present, so this must be checked in advance on the connected device.%
+
+\section{Hardware Handling}%
+This section contains some information about the built scanner and the interaction with the device.%
+
+\subsection{Object Mounting}%
+For the scan it is necessary to attach the object to be scanned to the Turntable. The holes in the Turntable allow to fix the object with cable ties. But this can lead to artefacts in the scan, so I prefer to use adhesive putty which can be reused many times.%
+
+\subsection{Scanner Adjustment}%
+Depending on the size of the object to be scanned, it may be useful to adjust the height of the lights or the turntable. The parts have been designed to allow this. This makes it possible to move the rotation center of the x-axis near the center of the object to be scanned.%
+
+Thus, depending on the object, it can be ensured that it is always in the field of view of the camera, which is important for the automatic creation of images.%
+
+\subsection{Status LED}%
+The Open3DScanner has a bi-color LED, which is used to indicate the state of the scanner. The different state are explained below.%
+
+\begin{table}[ht!]%
+	\begin{centered}%
+		\rowcolors{2}{tableLineTwo}{tableLineOne}% specify rowcolors in tabularx style
+		\begin{tabularx} {\linewidth} {>{\rowmac \hsize=1\hsize}X>{\rowmac \hsize=1\hsize}X>{\rowmac \hsize=1\hsize}X<{\clearrow}}%
+			\tabularxHeader%
+			LED & State & Note\\%
+			The LED lights green & Running & The scanner is turned on and ready for user interaction.\\%
+			The LED lights yellow & Scanning & The scanner is performing a scan.\\%
+			The LED flashes green very slowly & Scan finished & A scan has been finished successfully.\\%
+			The LED flashes yellow slowly & Scan will continue & An interrupted scan will be continued soon.\\%
+			The LED flashes red fast & No connection & The Bluetooth connection has been lost during scanning.\\%
+		\end{tabularx}%
+		\caption{Different states of the status LED}%
+	\end{centered}%
+\end{table}%

@@ -1,0 +1,39 @@
+\chapter{Preface}%
+\label{c:preface}%
+A 3D scanner is a good addition to a 3D printer.%
+
+Before a detailed examination of the subject is performed, it is necessary to clarify what is the meaning of the term 3D scanning.%
+
+\blockQuote[\hrefIdx{https://en.wikipedia.org/wiki/3D\_scanning}{3D scanning --- Wikipedia}]{3D scanning is the process of analyzing a real-world object or environment to collect data on its shape and possibly its appearance (e.g. colour). The collected data can then be used to construct digital 3D models.}%
+
+3D scanning can greatly simplify the process of making a printed copy of an object. For example, when a component is broken and a 3D printer should be used to make a replacement. Or if a physical object for which no 3D files are available should be modified.%
+
+While there are great 3D printers available for various budgets, the market for 3D scanners is not that big. At least the devices are not as common as 3D printers.%
+
+Similar to 3D printing there are several technological approaches for the realization of 3D scanners, which are connected with different efforts and costs and show differences in the quality of the results.%
+
+A particularly interesting approach for the average maker is photogrammetry. In photogrammetry a large number of photos from different viewing angles are taken from an object. Then a special software is used to create a 3D object from the images in a multi-stage process.\sideNote[white]{A great introduction to the photogrammetry pipeline, including references to scientific papers is provided by \hrefIdx{https://alicevision.org/\#photogrammetry}{AliceVision}.}%
+
+Depending on the number and quality (illumination, sharpness, resolution, camera distance to object, \dots) of the images, an accurate 3D model of the physical model can be created.\sideNote[white]{Further information on the factors which affect the quality of the final model are explained by \hrefIdx{https://www.photomodeler.com/kb/factors\_affecting\_accuracy\_in\_photogramm/}{Pho\-to\-Mod\-el\-er Technologies}.} Theoretically, results with an accuracy of \SI{0.1}{\milli\meter} can be achieved.%
+
+Since the cameras in smartphones (especially in high-end devices) are continuously being improved and nowadays deliver considerable quality, most people already have the most important tool for creating their own photogrammetry images.%
+
+The other important tool in the photogrammetry pipeline is the software that processes the captured images and calculates the 3D model. There are many different software solutions which have been developed for photogrammetry.\sideNote{An extensive list of software for photogrammetry, which highlights some features for each software, is provided by  \hrefIdx{https://all3dp.com/1/best-photogrammetry-software/}{ALL3DP}.} Fortunately, there are also several open source projects in this list.%
+
+All that is missing is a computer (as powerful as possible) that runs the software. This shouldn't be a problem because most makers already have a home computer.%
+
+Thus for many makers all necessary tools are available to create 3D scans with photogrammetry. So the question arises why 3D scanning has such a low popularity compared to 3D printing. One possible answer to this question is that there is simply no need for it. Another possible answer is that the manual creation of the many photos that are needed will discourage most people because it is very time-consuming. Perhaps it is also because a 3D scanner is used much less often than a 3D printer, which is why one does not want to buy a 3D scanner, even if it is similarly inexpensive as a 3D printer.\sideNote{An overview of a large number of available 3D scanners and some of their features can be viewed at  \hrefIdx{https://www.aniwaa.com/comparison/3d-scanners/}{ANIWAA}. The list contains photogrammetry devices as well as various other technologies, but it is possible to filter the displayed devices.}%
+
+For this reason the Open3DScanner project was started. The goal of the project is to provide the maker community with a 3D scanner that delivers 3D scans in good quality while keeping costs as low as possible by relying on existing tools such as smartphones and computers. It should be possible to implement the entire project for less than \SI[round-precision=2,round-mode=places,round-integer-to-decimal]{150}[\$], provided the necessary tools are available and the required parts can be procured without extreme (e.g. shipping) costs.%
+
+In its standard configuration, the Open3DScanner offers a scanning area that includes a cylinder with a diameter of approximately \SI{26}{\centi\meter} and a height of approximately \SI{16}{\centi\meter}. This restriction can easily be circumvented to a certain extent by configuring the scans accordingly. Detailed information can be found in chapter~\ref{c:performingScans}. All parts are designed to fit on the print bed of an original Prusa i3 to allow the use of a variety of 3D printers.%
+
+This document serves as a complete reference for the Open3DScanner project. It contains all the necessary information that makers need to build their own Open3DScanner, modify the 3D scanner, or simply get detailed information about the project.%
+
+Before a detailed examination of the Open3DScanner, chapter~\ref{c:rel_projects} introduces other open source 3D scanners and compares them with the Open3DScanner. Chapter~\ref{c:usedSoftware} describes the toolchain used to create and design the Open3DScanner and shows dependencies to other projects (e.g. software libraries). Chapter~\ref{c:bom} contains a BOM, which contains all parts needed to build the Open3DScanner. In addition, the required tools for building the scanner are listed and hardware required for operation is described. Chapter~\ref{c:build} then describes in detail all the steps necessary to build your own Open3DScanner from the individual components. Chapter~\ref{c:userGuide} contains a user manual which describes the use of the fully assembled Open3DScanner. Finally, chapter~\ref{c:performingScans} presents various tips and tricks that make it easier to create successful 3D scans using photogrammetry.%
+
+Thus, depending on the interests of the reader, not all chapters are equally interesting. However, the structure of the document should allow the chapters to be read individually and independently of each other. The necessary cross-references can be found in the necessary places.%
+
+There is no schedule for future development of this project. They are based on my needs and the needs of the Open3DScanner users.%
+
+The Open3DScanner has been published in various communities to reach a wider audience. The center of development and secure reference point for the latest version of the project is the {\faGithub} \hrefIdx{https://github.com/nazzrim/Open3DScanner}{Open3DScanner repository}.%
