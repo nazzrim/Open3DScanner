@@ -7,7 +7,7 @@ Instead it enables you to automaticall create sets of photos by using your smart
 
 But by automating the process of capturing the required photos the time you need to spend on creating a 3D scan can significantly decreased.
 
-##Features
+## Features
 - Automatic generation of photosets for photogrammetry
 - Support for android and iOS devices
 - Adjustable scanning parameters for different granularities of detail
