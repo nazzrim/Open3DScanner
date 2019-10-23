@@ -374,13 +374,15 @@ bool take_next_photo(uint32_t current_photo, uint32_t total_photos, uint64_t etr
     // turn led into "operating" mode again (yellow)
     status_led_yellow();
   }
+  String firstLine = String("Taken photos:");
   String cur = String(current_photo);
   String total = String(total_photos);
   String progress = String(((float) current_photo) / total_photos, 2) + " %";
   // create better readable values from etr time
   String etr_str = retrieve_time_string_for_ms(etr);
   lcd.clear(false);
-  lcd.println("Taking photo:");
+  lcd.setCursor((84 - (firstLine.length() * 5)) / 2, 0);
+  lcd.println(firstLine.c_str());
   lcd.setCursor((84 - (cur.length() * 5)) / 2, 1);
   lcd.print(cur.c_str());
   lcd.setCursor(37, 2);
