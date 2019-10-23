@@ -85,10 +85,10 @@ bool wait_for_time(short time_to_wait, boolean abort_screen = true) {
           // process inputs
           if (encoder_button_pressed) {
             consume_encoder_button();
-            current_state = MENU;
+            bool result = yes_selected;
             // reset the yes_selected status for next time the menu is opened
             yes_selected = false;
-            return true;
+            return result;
           } else if ((int32_t)encoder.getCount() != 0) {
             yes_selected = (int32_t)encoder.getCount() < 0;
             encoder.setCount(0);
