@@ -1,5 +1,6 @@
 # Open3DScanner
 ![The Open3DScanner](/images/logo.png?raw=true)
+
 The Open3DScanner is an open source photogrammetry 3D Scanner. Despite its name it does not provide you with the full photogrammetry pipeline.
 
 Instead it enables you to automaticall create sets of photos by using your smartphone camera. These photos need to be processed by your normal photogrammetry pipeline later on.
