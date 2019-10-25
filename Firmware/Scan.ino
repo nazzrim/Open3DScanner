@@ -202,6 +202,7 @@ void perform_scan() {
     for(uint16_t table_pos = 0; table_pos < selected_scan->photos_per_revolution; table_pos++) {
       if (take_next_photo(current_photo++, total_photos, etr)) {
         current_state = MENU;
+        turn_light_off();
         return;
       }
       etr -= time_for_photo();
@@ -209,6 +210,7 @@ void perform_scan() {
       if (table_pos < selected_scan->photos_per_revolution - 1) {
         if (turntable_to_next_position(*selected_scan)) {
           current_state = MENU;
+          turn_light_off();
           return;
         }
         etr -= time_for_turntable_move(*selected_scan);
@@ -218,6 +220,7 @@ void perform_scan() {
     if (rot_pos < selected_scan->rotation_divisions - 1) {
       if (rotor_to_next_position(*selected_scan)) {
         current_state = MENU;
+        turn_light_off();
         return;
       }
       etr -= time_for_rotor_move(*selected_scan);
