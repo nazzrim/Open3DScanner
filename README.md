@@ -21,4 +21,4 @@ Since this repository contains mixed resources (code, documents, images, ...) th
 
 For that reason each subfolder of the root folder contains its own LICENSE.md file which defines the license which applies to the corresponding resources.
 
-But in general code resources are licensed under the GPLv3 while media resources (like documents and images) are licensed with the CC-BY-SA 4.0 license.
+But in general code and 3D model resources are licensed under the GPLv3 while media resources (like documents and images) are licensed with the CC-BY-SA 4.0 license.
