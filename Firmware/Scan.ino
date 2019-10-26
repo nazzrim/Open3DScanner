@@ -85,10 +85,10 @@ bool wait_for_time(short time_to_wait, boolean abort_screen = true) {
           // process inputs
           if (encoder_button_pressed) {
             consume_encoder_button();
-            current_state = MENU;
+            bool result = yes_selected;
             // reset the yes_selected status for next time the menu is opened
             yes_selected = false;
-            return true;
+            return result;
           } else if ((int32_t)encoder.getCount() != 0) {
             yes_selected = (int32_t)encoder.getCount() < 0;
             encoder.setCount(0);
@@ -202,6 +202,7 @@ void perform_scan() {
     for(uint16_t table_pos = 0; table_pos < selected_scan->photos_per_revolution; table_pos++) {
       if (take_next_photo(current_photo++, total_photos, etr)) {
         current_state = MENU;
+        turn_light_off();
         return;
       }
       etr -= time_for_photo();
@@ -209,6 +210,7 @@ void perform_scan() {
       if (table_pos < selected_scan->photos_per_revolution - 1) {
         if (turntable_to_next_position(*selected_scan)) {
           current_state = MENU;
+          turn_light_off();
           return;
         }
         etr -= time_for_turntable_move(*selected_scan);
@@ -218,6 +220,7 @@ void perform_scan() {
     if (rot_pos < selected_scan->rotation_divisions - 1) {
       if (rotor_to_next_position(*selected_scan)) {
         current_state = MENU;
+        turn_light_off();
         return;
       }
       etr -= time_for_rotor_move(*selected_scan);
@@ -374,13 +377,15 @@ bool take_next_photo(uint32_t current_photo, uint32_t total_photos, uint64_t etr
     // turn led into "operating" mode again (yellow)
     status_led_yellow();
   }
+  String firstLine = String("Taken photos:");
   String cur = String(current_photo);
   String total = String(total_photos);
   String progress = String(((float) current_photo) / total_photos, 2) + " %";
   // create better readable values from etr time
   String etr_str = retrieve_time_string_for_ms(etr);
   lcd.clear(false);
-  lcd.println("Taking photo:");
+  lcd.setCursor((84 - (firstLine.length() * 5)) / 2, 0);
+  lcd.println(firstLine.c_str());
   lcd.setCursor((84 - (cur.length() * 5)) / 2, 1);
   lcd.print(cur.c_str());
   lcd.setCursor(37, 2);

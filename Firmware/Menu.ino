@@ -634,7 +634,7 @@ MenuItem menu_item_settings_scan_move_delay("Move Delay", &on_menu_item_settings
  * - Changing the constrast of the display
  */
 Menu menu_settings_display("Display");
-BackMenuItem menu_item_display_back("..", &on_back_menu_item_light_off, &menu_system);
+BackMenuItem menu_item_display_back("..", &on_back_menu_item, &menu_system);
 MenuItem menu_item_display_switch_light("Switch Light", &on_menu_item_display_switch_light_selected);
 MenuItem menu_item_display_change_contrast("Change Contrast", &on_menu_item_display_change_contrast_selected);
 
@@ -757,7 +757,7 @@ MenuItem menu_item_steppers_turntable_deceleration("Deceleration", &on_menu_item
  * - Switching the light status
  */
 Menu menu_debug("Debug");
-BackMenuItem menu_item_debug_back("..", &on_back_menu_item, &menu_system);
+BackMenuItem menu_item_debug_back("..", &on_back_menu_item_light_off, &menu_system);
 MenuItem menu_item_debug_take_photo("Take Photo", &on_menu_item_debug_take_photo);
 MenuItem menu_item_debug_switch_light("Switch Light", &on_menu_item_debug_switch_light);
 
